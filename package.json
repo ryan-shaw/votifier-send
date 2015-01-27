@@ -1,6 +1,6 @@
 {
   "name": "votifier-send",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Send votifier data to server",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/ryanshawty/votifier-send",
   "dependencies": {
-    "node-rsa": "^0.2.13",
     "ursa": "^0.8.1"
   }
 }

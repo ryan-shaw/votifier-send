@@ -8,7 +8,7 @@ npm install votifier-send
 To send votifier data:
 
 ```javascript
-var votifier = require('votifier');
+var votifier = require('votifier-send');
 
 var settings = {
 	key: '... Your RSA pub key for the server',
