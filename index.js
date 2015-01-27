@@ -2,7 +2,7 @@ var ursa = require('ursa');
 var net = require('net');
 
 module.exports = {
-    check: send
+    send: sendData
 };
 
 function sendData(settings, callback){
@@ -10,7 +10,7 @@ function sendData(settings, callback){
     settings.key = wordwrap(settings.key, 65, true);
     var pubKey = new Buffer('-----BEGIN PUBLIC KEY-----\n' + settings.key + '\n-----END PUBLIC KEY-----\n');
     
-    var build = 'VOTE\nmcerverstatus\nryanshawty\n203.0.113.1\n'+new Date().getTime()+'\n';
+    var build = 'VOTE\n' + settings.data.site + '\n'+ settings.data.user + '\n' + settings.data.addr + '\n'+new Date().getTime()+'\n';
     
     var len = (256-build.length)/2;
     for(var i = 0; i < len; i++){
