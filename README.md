@@ -15,9 +15,9 @@ var settings = {
 	host: 'localhost',
 	port: 8192,
 	data: {
-		user: 'ryanshawty',
-		site: 'mcserverstatus',
-		addr: '192.168.1.1'
+		user: '<players username>',
+		site: '<voting site name>',
+		addr: '<ip address of player>'
 	}
 }
 
