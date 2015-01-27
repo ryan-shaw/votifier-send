@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/ryanshawty/votifier-send/issues"
   },
-  "homepage": "https://github.com/ryanshawty/votifier-send"
+  "homepage": "https://github.com/ryanshawty/votifier-send",
+  "dependencies": {
+    "node-rsa": "^0.2.13",
+    "ursa": "^0.8.1"
+  }
 }
