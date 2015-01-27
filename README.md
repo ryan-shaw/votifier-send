@@ -25,3 +25,4 @@ votifer.send(settings, callback(err){
 	if(err) console.log(err);
 	// If no err success
 })
+```
