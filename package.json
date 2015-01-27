@@ -1,0 +1,23 @@
+{
+  "name": "votifier-send",
+  "version": "0.1.0",
+  "description": "Send votifier data to server",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha index.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanshawty/votifier-send.git"
+  },
+  "keywords": [
+    "votifier",
+    "minecraft"
+  ],
+  "author": "Ryan Shaw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryanshawty/votifier-send/issues"
+  },
+  "homepage": "https://github.com/ryanshawty/votifier-send"
+}
