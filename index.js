@@ -1,4 +1,4 @@
-var ursa = require('ursa');
+var ursa = require('ursa-purejs');
 var net = require('net');
 
 module.exports = {
@@ -9,9 +9,9 @@ function sendData(settings, callback){
     settings.key = settings.key.replace(/ /g, '+');
     settings.key = wordwrap(settings.key, 65, true);
     var pubKey = new Buffer('-----BEGIN PUBLIC KEY-----\n' + settings.key + '\n-----END PUBLIC KEY-----\n');
-    
+
     var build = 'VOTE\n' + settings.data.site + '\n'+ settings.data.user + '\n' + settings.data.addr + '\n'+new Date().getTime()+'\n';
-    
+
     var len = (256-build.length)/2;
     for(var i = 0; i < len; i++){
     	build += '\0';
@@ -37,7 +37,7 @@ function sendData(settings, callback){
 
 function wordwrap(str, maxWidth) {
     var newLineStr = "\n"; done = false; res = '';
-    do {                    
+    do {
         found = false;
 
         if (!found) {
