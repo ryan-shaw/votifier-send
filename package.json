@@ -1,6 +1,6 @@
 {
   "name": "votifier-send",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Send votifier data to server",
   "main": "index.js",
   "scripts": {
