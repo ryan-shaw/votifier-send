@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/ryanshawty/votifier-send",
   "dependencies": {
-    "ursa": "^0.8.1"
+    "ursa-purejs": "0.0.3"
   }
 }
