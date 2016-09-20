@@ -11,11 +11,6 @@ function sendData(settings, callback){
     var pubKey = new Buffer('-----BEGIN PUBLIC KEY-----\n' + settings.key + '\n-----END PUBLIC KEY-----\n');
 
     var build = 'VOTE\n' + settings.data.site + '\n'+ settings.data.user + '\n' + settings.data.addr + '\n'+new Date().getTime()+'\n';
-
-    var len = (256-build.length)/2;
-    for(var i = 0; i < len; i++){
-    	build += '\0';
-    }
     var buf = new Buffer(build, 'binary');
 
     key = ursa.createPublicKey(pubKey);
@@ -30,8 +25,12 @@ function sendData(settings, callback){
 			callback(null);
 		});
 	});
-	connection.on('error', function(e){
-		return callback('Could not connect to server');
+	connection.setTimeout(settings.timeout || 2000, function(){
+		connection.end();
+		return callback(new Error("Socket timeout"));
+	});
+	connection.once('error', function(e){
+		return callback(e);
 	});
 }
 
