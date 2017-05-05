@@ -17,7 +17,8 @@ var settings = {
 	data: {
 		user: '<players username>',
 		site: '<voting site name>',
-		addr: '<ip address of player>'
+		addr: '<ip address of player>',
+		timestamp: new Date().getTime()
 	}
 }
 

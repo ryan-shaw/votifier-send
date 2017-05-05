@@ -8,9 +8,12 @@ module.exports = {
 function sendData(settings, callback){
     settings.key = settings.key.replace(/ /g, '+');
     settings.key = wordwrap(settings.key, 65, true);
+    var timestampdata = Date().getTime();
+    if(settings.data.timestamp)
+        timestampdata = new Date(settings.data.timestamp);
     var pubKey = new Buffer('-----BEGIN PUBLIC KEY-----\n' + settings.key + '\n-----END PUBLIC KEY-----\n');
 
-    var build = 'VOTE\n' + settings.data.site + '\n'+ settings.data.user + '\n' + settings.data.addr + '\n'+new Date().getTime()+'\n';
+    var build = 'VOTE\n' + settings.data.site + '\n'+ settings.data.user + '\n' + settings.data.addr + '\n'+timestampdata+'\n';
     var buf = new Buffer(build, 'binary');
 
     key = ursa.createPublicKey(pubKey);
