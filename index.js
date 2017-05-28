@@ -19,21 +19,29 @@ function sendData(settings, callback){
     key = ursa.createPublicKey(pubKey);
     var data = key.encrypt(build, 'binary', 'binary', ursa.RSA_PKCS1_PADDING);
 
+	var called = false;
+	var callbackWrapper = function(e){
+		if (!called){
+			called = true;
+			callback(e);
+		}
+	};
+
     var connection = net.createConnection({
 		host: settings.host,
 		port: settings.port
 	}, function(){
 		connection.write(data, 'binary', function(){
 			connection.end();
-			callback(null);
+			callbackWrapper(null);
 		});
 	});
 	connection.setTimeout(settings.timeout || 2000, function(){
 		connection.end();
-		return callback(new Error("Socket timeout"));
+		return callbackWrapper(new Error("Socket timeout"));
 	});
 	connection.once('error', function(e){
-		return callback(e);
+		return callbackWrapper(e);
 	});
 }
 
