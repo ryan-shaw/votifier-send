@@ -19,13 +19,13 @@ function sendData(settings, callback){
     key = ursa.createPublicKey(pubKey);
     var data = key.encrypt(build, 'binary', 'binary', ursa.RSA_PKCS1_PADDING);
 
-	var called = false;
-	var callbackWrapper = function(e){
-		if (!called){
-			called = true;
-			callback(e);
-		}
-	};
+    var called = false;
+    var callbackWrapper = function(e){
+        if (!called){
+            called = true;
+            callback(e);
+        }
+    };
 
     var connection = net.createConnection({
 		host: settings.host,
