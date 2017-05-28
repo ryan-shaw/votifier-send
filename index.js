@@ -8,7 +8,7 @@ module.exports = {
 function sendData(settings, callback){
     settings.key = settings.key.replace(/ /g, '+');
     settings.key = wordwrap(settings.key, 65, true);
-    var timestampdata = Date().getTime();
+    var timestampdata = new Date().getTime();
     if(settings.data.timestamp)
         timestampdata = new Date(settings.data.timestamp);
     var pubKey = new Buffer('-----BEGIN PUBLIC KEY-----\n' + settings.key + '\n-----END PUBLIC KEY-----\n');
@@ -19,21 +19,29 @@ function sendData(settings, callback){
     key = ursa.createPublicKey(pubKey);
     var data = key.encrypt(build, 'binary', 'binary', ursa.RSA_PKCS1_PADDING);
 
+	var called = false;
+	var callbackWrapper = function(e){
+		if (!called){
+			called = true;
+			callback(e);
+		}
+	};
+
     var connection = net.createConnection({
 		host: settings.host,
 		port: settings.port
 	}, function(){
 		connection.write(data, 'binary', function(){
 			connection.end();
-			callback(null);
+			callbackWrapper(null);
 		});
 	});
 	connection.setTimeout(settings.timeout || 2000, function(){
 		connection.end();
-		return callback(new Error("Socket timeout"));
+		return callbackWrapper(new Error("Socket timeout"));
 	});
 	connection.once('error', function(e){
-		return callback(e);
+		return callbackWrapper(e);
 	});
 }
 
