@@ -8,7 +8,7 @@ module.exports = {
 function sendData(settings, callback){
     settings.key = settings.key.replace(/ /g, '+');
     settings.key = wordwrap(settings.key, 65, true);
-    var timestampdata = Date().getTime();
+    var timestampdata = new Date().getTime();
     if(settings.data.timestamp)
         timestampdata = new Date(settings.data.timestamp);
     var pubKey = new Buffer('-----BEGIN PUBLIC KEY-----\n' + settings.key + '\n-----END PUBLIC KEY-----\n');
