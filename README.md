@@ -22,7 +22,7 @@ var settings = {
 	}
 }
 
-votifer.send(settings, callback(err){
+votifier.send(settings, (err)=>{
 	if(err) console.log(err);
 	// If no err success
 })
